@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="{% url 'dashboard_redirect' %}">
+            <i class="fas fa-graduation-cap me-2"></i> LMS PORTAL
+        </a>
+        <div class="ms-auto d-flex align-items-center">
+            <span class="text-white me-3 d-none d-md-inline">
+                Welcome, <strong>{{ user.username }}</strong> ({{ user.role }})
+            </span>
+            <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+</nav>
+<div style="margin-top: 56px;"></div>

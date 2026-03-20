@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - LMS{% endblock %}
+
+{% block login_content %}
+<div class="login-page">
+    <div class="glass-card shadow-lg">
+        <div class="text-center mb-5">
+            <div class="logo-wrapper mb-3">
+                <i class="fas fa-graduation-cap fa-3x text-primary animate-bounce"></i>
+            </div>
+            <h2 class="fw-bold text-dark mb-1">Welcome Back</h2>
+            <p class="text-muted small">LMS - Leave Management System</p>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                {{ form.username }}
+                <label for="{{ form.username.id_for_label }}">Username</label>
+            </div>
+            <div class="form-floating mb-4">
+                {{ form.password }}
+                <label for="{{ form.password.id_for_label }}">Password</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100 py-3 fw-bold shadow-sm">
+                SIGN IN <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+        </form>
+        
+        {% if form.errors %}
+            <div class="alert alert-danger mt-4 py-2 small border-0 text-center" style="border-radius: 10px; background: rgba(220, 53, 69, 0.1); color: #dc3545;">
+                <i class="fas fa-exclamation-circle me-1"></i> Invalid credentials.
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .login-page {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        width: 420px;
+        padding: 3rem;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .form-floating > .form-control {
+        border-radius: 12px;
+        border: 1px solid #e0e6ed;
+    }
+    .form-floating > .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+    }
+    .btn-primary {
+        border-radius: 12px;
+        background: linear-gradient(to right, #0d6efd, #0b5ed7);
+        border: none;
+    }
+    .animate-bounce {
+        animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Apply Leave - LMS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold">New Leave Application</h5>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Leave Type</label>
+                            {{ form.leave_type }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Start Date</label>
+                            {{ form.start_date }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">End Date</label>
+                            {{ form.end_date }}
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Reason for Leave</label>
+                            {{ form.reason }}
+                        </div>
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-primary px-4 fw-bold">Submit Application</button>
+                            <a href="{% url 'employee_dashboard' %}" class="btn btn-light px-4 mx-2">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

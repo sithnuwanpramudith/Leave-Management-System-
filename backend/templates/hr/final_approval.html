@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Final Approval - LMS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm border-top border-4 border-primary">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold text-primary">HR Final Approval Review</h5>
+            </div>
+            <div class="card-body p-4">
+                <div class="mb-4">
+                    <h6 class="text-muted mb-1 small">EMPLOYEE</h6>
+                    <p class="fw-bold fs-5 mb-0">{{ leave.user.username }}</p>
+                    <p class="text-muted small">Dept: {{ leave.user.department }}</p>
+                    
+                    <h6 class="text-muted mb-1 small mt-3">MANAGER'S NOTE</h6>
+                    <p class="p-2 bg-light rounded italic">"{{ leave.manager_comments|default:"No comments provided." }}"</p>
+                    
+                    <h6 class="text-muted mb-1 small mt-3">REQUEST DETAILS</h6>
+                    <p class="mb-1 fw-bold">{{ leave.leave_type.name }}</p>
+                    <p class="mb-0">{{ leave.start_date }} to {{ leave.end_date }}</p>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">HR Final Comments</label>
+                        <textarea name="comments" class="form-control" rows="3" placeholder="Enter final remarks..."></textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" name="action" value="approve" class="btn btn-primary flex-grow-1 py-2 fw-bold">
+                            <i class="fas fa-check-double me-2"></i> Final Approvel
+                        </button>
+                        <button type="submit" name="action" value="reject" class="btn btn-outline-danger flex-grow-1 py-2 fw-bold">
+                            <i class="fas fa-times me-2"></i> Reject
+                        </button>
+                    </div>
+                    <a href="{% url 'hr_dashboard' %}" class="btn btn-light w-100 mt-3">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

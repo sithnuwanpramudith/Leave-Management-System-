@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - LMS{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1 class="h2 fw-bold text-dark">System Administration</h1>
+        <p class="text-muted">Global control panel for users, roles, and leave policies.</p>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="bg-primary-subtle p-3 rounded-3 me-3">
+                    <i class="fas fa-users text-primary fs-4"></i>
+                </div>
+                <div>
+                    <p class="text-muted mb-0 small uppercase">TOTAL USERS</p>
+                    <h3 class="fw-bold mb-0">{{ total_users }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="bg-warning-subtle p-3 rounded-3 me-3">
+                    <i class="fas fa-clock text-warning fs-4"></i>
+                </div>
+                <div>
+                    <p class="text-muted mb-0 small uppercase">PENDING LEAVES</p>
+                    <h3 class="fw-bold mb-0">{{ pending_leaves }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold">Quick Management</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <a href="{% url 'user_list' %}" class="list-group-item list-group-item-action py-3">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1 fw-bold">User Management</h6>
+                                <p class="mb-0 text-muted small">Create, edit, or remove system users.</p>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </div>
+                    </a>
+                    <a href="{% url 'admin_leave_requests' %}" class="list-group-item list-group-item-action py-3">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1 fw-bold">System Leave Audit</h6>
+                                <p class="mb-0 text-muted small">View all leave requests across the company.</p>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </div>
+                    </a>
+                    <a href="{% url 'admin_settings' %}" class="list-group-item list-group-item-action py-3 border-bottom-0">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1 fw-bold">Global Settings</h6>
+                                <p class="mb-0 text-muted small">Configure application parameters.</p>
+                            </div>
+                            <i class="fas fa-chevron-right text-muted"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100 bg-primary text-white overflow-hidden">
+            <div class="card-body p-4 position-relative">
+                <h4 class="fw-bold">System Summary</h4>
+                <p class="text-white-50">LMS is currently running version 1.0.0</p>
+                <div class="mt-4">
+                    <div class="mb-3">
+                        <p class="mb-1 small">Database Integrity</p>
+                        <div class="progress" style="height: 6px; background: rgba(255,255,255,0.2);">
+                            <div class="progress-bar bg-white" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <i class="fas fa-server position-absolute bottom-0 end-0 m-4 opacity-25" style="font-size: 8rem;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

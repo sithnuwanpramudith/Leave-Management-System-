@@ -1,0 +1,83 @@
+<div class="position-sticky pt-3">
+    <ul class="nav flex-column">
+        {% if user.role == 'ADMIN' %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'admin_dashboard' %}">
+                    <i class="fas fa-th-large me-2"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_list' %}">
+                    <i class="fas fa-users me-2"></i> User Management
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_leave_requests' %}">
+                    <i class="fas fa-calendar-alt me-2"></i> Leave Requests
+                </a>
+            </li>
+        {% elif user.role == 'EMPLOYEE' %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'employee_dashboard' %}">
+                    <i class="fas fa-home me-2"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'apply_leave' %}">
+                    <i class="fas fa-plus-circle me-2"></i> Apply Leave
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'leave_history' %}">
+                    <i class="fas fa-history me-2"></i> Leave History
+                </a>
+            </li>
+        {% elif user.role == 'MANAGER' %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'manager_dashboard' %}">
+                    <i class="fas fa-tasks me-2"></i> Approvals
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'team_report' %}">
+                    <i class="fas fa-users-cog me-2"></i> Team Reports
+                </a>
+            </li>
+        {% elif user.role == 'HR' %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'hr_dashboard' %}">
+                    <i class="fas fa-check-double me-2"></i> Final Approvals
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'employee_list' %}">
+                    <i class="fas fa-user-friends me-2"></i> Employee Mgmt
+                </a>
+            </li>
+        {% endif %}
+        <li class="nav-item mt-3">
+            <hr>
+            <a class="nav-link text-danger" href="{% url 'logout' %}">
+                <i class="fas fa-sign-out-alt me-2"></i> Sign Out
+            </a>
+        </li>
+    </ul>
+</div>
+
+<style>
+    .sidebar .nav-link {
+        font-weight: 500;
+        color: #333;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin: 0.2rem 0;
+    }
+    .sidebar .nav-link:hover {
+        background-color: #f8f9fa;
+        color: #0d6efd;
+    }
+    .sidebar .nav-link.active {
+        color: #0d6efd;
+        background-color: #e7f1ff;
+    }
+</style>

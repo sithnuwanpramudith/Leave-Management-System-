@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}HR Dashboard - LMS{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <h1 class="h2 fw-bold">HR Officer Dashboard</h1>
+        <p class="text-muted">Finalize leave approvals and manage employee records.</p>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-bold">Awaiting Final HR Approval</h5>
+        <span class="badge bg-success rounded-pill">{{ leaves.count }} Waiting</span>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Employee</th>
+                        <th>Type</th>
+                        <th>Manager Status</th>
+                        <th>Applied On</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for leave in leaves %}
+                    <tr>
+                        <td class="fw-bold">{{ leave.user.username }}</td>
+                        <td>{{ leave.leave_type.name }}</td>
+                        <td><span class="badge bg-info text-dark">Approved by Manager</span></td>
+                        <td class="small text-muted">{{ leave.created_at|date:"d M Y" }}</td>
+                        <td>
+                            <a href="{% url 'final_approval' leave.id %}" class="btn btn-sm btn-primary fw-bold">
+                                Final Review
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center py-4 text-muted">No requests awaiting final HR approval.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
